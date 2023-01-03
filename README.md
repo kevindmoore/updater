@@ -1,16 +1,13 @@
 # updater
 
-A new Flutter project.
+A Project for Updating Desktop Flutter Apps
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Create an account and login. Create a new App with Mac location.
+This will be of the type:
+`/Applications/My App.app`
 
-A few resources to get you started if this is your first Flutter project:
+Updater can replace just the binary file for Mac apps so that the whole app does not need to be updated.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Windows will need to create and msi file and run it.
