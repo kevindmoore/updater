@@ -7,6 +7,7 @@ import 'package:updater/router/route_names.dart';
 
 import '../database/repository.dart';
 import '../models/apps.dart';
+import 'app_dialog.dart';
 
 class AppList extends ConsumerStatefulWidget {
   const AppList({Key? key}) : super(key: key);
@@ -42,7 +43,7 @@ class _AppListState extends ConsumerState<AppList> {
           }
         },),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => addApp(),
+        onPressed: () => updateApp(context, ref, null, false),
         tooltip: 'Add',
         child: const Icon(Icons.add),
       ),
@@ -153,7 +154,7 @@ class _AppRowState extends ConsumerState<AppRow> {
                     padding: const EdgeInsets.fromLTRB(2.0, 8.0, 0.0, 8.0),
                     alignment: Alignment.centerLeft,
                     onPressed: () {
-                      renameApp(widget.app);
+                      updateApp(context, ref, widget.app, true);
                     },
                     icon: const Icon(
                       Icons.edit,
