@@ -1,4 +1,4 @@
-# updater
+# Updater
 
 A Project for Updating Desktop Flutter Apps
 

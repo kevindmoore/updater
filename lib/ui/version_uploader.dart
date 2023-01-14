@@ -12,6 +12,7 @@ import 'package:process_run/shell.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:updater/models/versions.dart';
 import 'package:updater/providers.dart';
+import 'package:utilities/utilities.dart';
 
 import '../database/repository.dart';
 import '../models/apps.dart';
@@ -282,12 +283,26 @@ class _VersionRowState extends ConsumerState<VersionRow> {
           '${directory.path}/${widget.file.name}',
           widget.app.macAppPath!
         ]);
-        await runCmd(cmd, verbose: true);
+        bool errorShown = false;
+        var result = await runCmd(cmd, verbose: true);
+        if (result.exitCode != 0) {
+          // if (!context.mounted) return;
+          showTextMessage(context, result.errText);
+          errorShown = true;
+        }
         cmd = ProcessCmd('chmod', [
           '755',
           '${widget.app.macAppPath!}/${widget.file.name}'
         ]);
-        await runCmd(cmd, verbose: true);
+        result = await runCmd(cmd, verbose: true);
+        if (result.exitCode != 0) {
+          // if (!context.mounted) return;
+          showTextMessage(context, result.errText);
+          errorShown = true;
+        }
+        if (!errorShown) {
+          showTextMessage(context, '${widget.app.appName} has been updated');
+        }
         // await shell.run(shellArguments(arguments));
       } on ShellException catch (exception) {
         logError(exception);
